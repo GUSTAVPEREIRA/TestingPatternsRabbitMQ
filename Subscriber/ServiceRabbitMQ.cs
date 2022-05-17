@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-public class ServiceRabbitMq : IHostedService
+public class ServiceRabbitMq : IHostedService, IDisposable
 {
     private IModel channel;
     private IConnection connection;
@@ -37,6 +37,9 @@ public class ServiceRabbitMq : IHostedService
             var body = e.Body;
             var message = Encoding.UTF8.GetString(body.ToArray());
             Console.WriteLine(" [x] Received {0}", message);
+            
+            
+            
             channel.BasicAck(e.DeliveryTag, false);
         };
     }
@@ -49,9 +52,13 @@ public class ServiceRabbitMq : IHostedService
 
     public Task StopAsync(CancellationToken cancellationToken)
     {
-        channel.Dispose();
-        connection.Dispose();
         Run();
         return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        channel.Dispose();
+        connection.Dispose();
     }
 }
