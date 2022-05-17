@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanoutPublisher", "FanoutPublisher\FanoutPublisher.csproj", "{AE7CE513-BE92-484F-A913-83742127B030}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FanoutConsumer", "FanoutConsumer\FanoutConsumer.csproj", "{B38A97D5-4B03-4D5E-A0D9-9794ABABA82D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscriber", "Subscriber\Subscriber.csproj", "{11276CA6-323B-40EF-A65F-6827D9EBC7CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE7CE513-BE92-484F-A913-83742127B030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE7CE513-BE92-484F-A913-83742127B030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE7CE513-BE92-484F-A913-83742127B030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE7CE513-BE92-484F-A913-83742127B030}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B38A97D5-4B03-4D5E-A0D9-9794ABABA82D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B38A97D5-4B03-4D5E-A0D9-9794ABABA82D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B38A97D5-4B03-4D5E-A0D9-9794ABABA82D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B38A97D5-4B03-4D5E-A0D9-9794ABABA82D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11276CA6-323B-40EF-A65F-6827D9EBC7CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11276CA6-323B-40EF-A65F-6827D9EBC7CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11276CA6-323B-40EF-A65F-6827D9EBC7CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11276CA6-323B-40EF-A65F-6827D9EBC7CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
