@@ -32,15 +32,32 @@ public class ServiceRabbitMq : IHostedService, IDisposable
 
         var consumer = new EventingBasicConsumer(channel);
         var consumerTag = channel.BasicConsume("my.queue1", false, consumer);
+        var n = 0;
         consumer.Received += (sender, e) =>
         {
+            
             var body = e.Body;
             var message = Encoding.UTF8.GetString(body.ToArray());
             Console.WriteLine(" [x] Received {0}", message);
-            
-            
-            
-            channel.BasicAck(e.DeliveryTag, false);
+
+            try
+            {
+                channel.BasicAck(e.DeliveryTag, false);
+                // throw new Exception();
+            }
+            catch (Exception exception)
+            {
+                if (n == 0)
+                {
+                    n++;
+                    channel.BasicNack(e.DeliveryTag, true, false);
+                }
+                else
+                {
+                    n = 0;
+                    channel.BasicAck(e.DeliveryTag, false);
+                }
+            }
         };
     }
 

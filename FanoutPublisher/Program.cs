@@ -12,20 +12,25 @@ factory.Port = 5672;
 factory.UserName = "guest";
 factory.Password = "guest";
 
+IDictionary<string, object> arg = new Dictionary<string, object>
+{
+    { "x-delayed-type", "direct" }
+};
+
+
 conn = factory.CreateConnection();
 channel = conn.CreateModel();
+var basicProperties = channel.CreateBasicProperties();
+basicProperties.Headers = new Dictionary<string, object> { { "x-delay", 8000 } };
 channel.ExchangeDeclare("ex.fanout", "fanout", true, false, null);
 
 channel.QueueDeclare("my.queue1", true, false, false, null);
-channel.QueueDeclare("my.queue2", true, false, false, null);
 
-channel.QueueBind("my.queue1", "ex.fanout", "");
-channel.QueueBind("my.queue2", "ex.fanout", "");
-channel.BasicPublish("ex.fanout", "", null, Encoding.UTF8.GetBytes("message1"));
-channel.BasicPublish("ex.fanout", "", null, Encoding.UTF8.GetBytes("message2"));
+channel.QueueBind("my.queue1", "ex.fanout", "delayBind");
+channel.BasicPublish("ex.fanout", "delayBind", basicProperties, Encoding.UTF8.GetBytes("message1"));
 
-// channel.QueueDelete("my.queue1");
-// channel.QueueDelete("my.queue2");
+ channel.QueueDelete("my.queue1");
+ channel.QueueDelete("my.queue2");
 //
 // channel.Close();
 // channel.Close();
